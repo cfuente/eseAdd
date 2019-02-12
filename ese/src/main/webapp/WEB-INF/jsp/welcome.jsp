@@ -1,18 +1,12 @@
-<!DOCTYPE html>
+<html>
 
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<head>
+<title>Welcome</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<html lang="en">
+</head>
 
 <body>
-	<c:url value="/resources/text.txt" var="url"/>
-	<spring:url value="/resources/text.txt" htmlEscape="true" var="springUrl" />
-	Spring URL: ${springUrl} at ${time}
-	<br>
-	JSTL URL: ${url}
-	<br>
-	Message: ${message}
+	<h2>Welcome ${userName}</h2>
 </body>
-
 </html>

@@ -11,10 +11,15 @@ import eu.eurogestion.ese.domain.Personal;
 @Transactional
 public class PersonalDAOImpl extends GenericDAOImpl<Personal, Integer> implements PersonalDAO {
 
+	/**
+	 * Metodo para comprobar si el usuario y la password introducida corresponden a
+	 * un usuario
+	 * 
+	 * @param nombre
+	 * @param clave
+	 * @return
+	 */
 	public boolean login(String nombre, String clave) {
-		if (nombre == null || clave == null) {
-			return false;
-		}
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Personal.class);
 		criteria.add(Restrictions.eq("nombreUsuario", nombre)).add(Restrictions.eq("clave", clave));
 		if (criteria.uniqueResult() != null) {
@@ -22,5 +27,18 @@ public class PersonalDAOImpl extends GenericDAOImpl<Personal, Integer> implement
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * Metodo para obtener un personal dado su nombre de usuario
+	 * 
+	 * @param nombre
+	 * @return
+	 */
+	public Personal getpersonalByNameUser(String nombre) {
+
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Personal.class);
+		criteria.add(Restrictions.eq("nombreUsuario", nombre));
+		return (Personal) criteria.uniqueResult();
 	}
 }
