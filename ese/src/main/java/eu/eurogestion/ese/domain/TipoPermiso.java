@@ -17,6 +17,7 @@ import javax.persistence.Table;
 @Table(name = "tipo_permiso", catalog = "eSe")
 public class TipoPermiso implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private int idPermiso;
 	private String valor;
 	private List<Perfil> perfiles;

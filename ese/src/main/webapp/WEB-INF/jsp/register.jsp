@@ -25,8 +25,7 @@
 			<%-- 					src="<c:url value="/static/resources/gfx/dualbrand_as7eap.png"/>" /> --%>
 			<!-- 			</div> -->
 
-			<form:form commandName="newUser" id="reg" method="POST">
-
+			<form:form modelAttribute="newUser" id="reg" method="POST">
 				<table>
 					<tbody>
 						<tr>
@@ -59,14 +58,10 @@
 							<td>${errorApellido}</td>
 						</tr>
 						<tr>
-
 							<td><form:label path="fechaNacimientoDia">Fecha de Nacimiento:</form:label>
-							<td><form:input path="fechaNacimientoDia"
-									placeholder="Dia" /></td>
-							<td><form:input path="fechaNacimientoMes"
-									placeholder="Mes" /></td>
-							<td><form:input path="fechaNacimientoAnho"
-									placeholder="Año" /></td>
+							<td><form:input path="fechaNacimientoDia" placeholder="Dia" /></td>
+							<td><form:input path="fechaNacimientoMes" placeholder="Mes" /></td>
+							<td><form:input path="fechaNacimientoAnho" placeholder="Año" /></td>
 							<td>${errorFecha}</td>
 						</tr>
 						<tr>
@@ -86,5 +81,7 @@
 					</tr>
 				</table>
 			</form:form>
+		</div>
+	</div>
 </body>
 </html>

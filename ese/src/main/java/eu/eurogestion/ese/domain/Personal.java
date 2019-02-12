@@ -24,6 +24,7 @@ import javax.persistence.TemporalType;
 @Table(name = "personal", catalog = "eSe")
 public class Personal implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Integer idPersonal;
 	private String documento;
 	private String nombre;

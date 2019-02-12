@@ -2,13 +2,11 @@ package eu.eurogestion.ese.domain;
 // Generated 11-feb-2019 14:05:28 by Hibernate Tools 5.2.11.Final
 
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -19,6 +17,7 @@ import javax.persistence.Table;
 @Table(name = "opcion", catalog = "eSe")
 public class Opcion implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private int idOpcion;
 	private String descripcion;
 	private String nombre;
