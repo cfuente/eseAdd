@@ -16,18 +16,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import eu.eurogestion.ese.domain.Personal;
 import eu.eurogestion.ese.pojo.UsuarioJSP;
 import eu.eurogestion.ese.pojo.UsuarioLoginJSP;
-import eu.eurogestion.ese.repository.PersonalDAO;
+import eu.eurogestion.ese.repository.PersonalDAOImpl;
 
 @Controller
 public class LoginController {
 
 	@Autowired
-	public PersonalDAO personalDAO;
+	public PersonalDAOImpl personalDAOImpl;
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(@ModelAttribute("login") UsuarioLoginJSP usuarioLogin, Model model) {
 		try {
-			if (personalDAO.login(usuarioLogin.getNombre(), usuarioLogin.getPassword())) {
+			if (personalDAOImpl.getPersonalByNameUserPassword(usuarioLogin.getNombre(), usuarioLogin.getPassword()) != null) {
 				model.addAttribute("userName", usuarioLogin.getNombre());
 				return "welcome";
 			}
@@ -113,13 +113,13 @@ public class LoginController {
 
 		try {
 			// TODO falta implementar
-			Personal personal = personalDAO.create();
+			Personal personal = personalDAOImpl.create();
 			personal.setNombre(newUser.getNombre());
 			personal.setApellido1(newUser.getApellido());
 			personal.setNombreUsuario(newUser.getUsuario());
 			personal.setClave(newUser.getPassword());
 			personal.setDocumento(newUser.getDocumento());
-			personalDAO.saveOrUpdate(personal);
+			personalDAOImpl.saveOrUpdate(personal);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -170,7 +170,7 @@ public class LoginController {
 	}
 
 	private boolean usuarioCorrecto(String usuario) {
-		return personalDAO.getpersonalByNameUser(usuario) != null;
+		return personalDAOImpl.getPersonalByNameUser(usuario) != null;
 
 	}
 

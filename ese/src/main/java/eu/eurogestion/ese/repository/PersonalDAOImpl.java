@@ -1,8 +1,15 @@
 package eu.eurogestion.ese.repository;
 
-import org.hibernate.Criteria;
-import org.hibernate.criterion.Restrictions;
-import org.hibernate.query.NativeQuery;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,37 +20,84 @@ import eu.eurogestion.ese.domain.Personal;
 public class PersonalDAOImpl extends GenericDAOImpl<Personal, Integer> implements PersonalDAO {
 
 	/**
-	 * Metodo para comprobar si el usuario y la password introducida corresponden a
-	 * un usuario
-	 * 
-	 * @param nombre
+	 * Obtiene un Personal con nameUser y clave.
+	 * @param nameUser
 	 * @param clave
-	 * @return
+	 * @return Personal si lo encuentra, null en caso contrario
 	 */
-	public boolean login(String nombre, String clave) {
-				
-		String cadena = "SELECT * FROM personal WHERE nombre_usuario = '" + nombre +"' AND clave = '" + clave + "';";
+	public Personal getPersonalByNameUserPassword(String nameUser, String clave) {
 		
-		@SuppressWarnings("unchecked")
-		NativeQuery<Personal> query = sessionFactory.getCurrentSession().createSQLQuery(cadena);
+		Session session = sessionFactory.getCurrentSession();
+		CriteriaBuilder cb = session.getCriteriaBuilder();
+		CriteriaQuery<Personal> cr = cb.createQuery(Personal.class);
+		Root<Personal> root = cr.from(Personal.class);
 
-		if (!query.getResultList().isEmpty()) {
-			return true;
-		} else {
-			return false;
+		List<Predicate> predicates = new ArrayList<>();
+		predicates.add(cb.equal(root.get("nombreUsuario"), nameUser));
+		predicates.add(cb.equal(root.get("clave"), clave));
+		predicates.add(cb.isNull(root.get("fechaBaja")));
+		
+		cr.select(root).where(predicates.toArray(new Predicate[]{}));
+		 
+		Query<Personal> query = session.createQuery(cr);
+		List<Personal> listPersonal = query.getResultList();
+		
+		if(listPersonal.isEmpty()) {
+			return null;
 		}
+		
+		return listPersonal.get(0); 		
 	}
 
 	/**
-	 * Metodo para obtener un personal dado su nombre de usuario
+	 * Obtiene un Personal a partir de nameUser
 	 * 
-	 * @param nombre
-	 * @return
+	 * @param nameUser
+	 * @return Personal si lo encuentra, null en caso contrario
 	 */
-	public Personal getpersonalByNameUser(String nombre) {
+	public Personal getPersonalByNameUser(String nameUser) {
 
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Personal.class);
-		criteria.add(Restrictions.eq("nombreUsuario", nombre));
-		return (Personal) criteria.uniqueResult();
+		Session session = sessionFactory.getCurrentSession();
+		CriteriaBuilder cb = session.getCriteriaBuilder();
+		CriteriaQuery<Personal> cr = cb.createQuery(Personal.class);
+		Root<Personal> root = cr.from(Personal.class);
+
+		List<Predicate> predicates = new ArrayList<>();
+		predicates.add(cb.equal(root.get("nombreUsuario"), nameUser));
+		
+		cr.select(root).where(predicates.toArray(new Predicate[]{}));
+		 
+		Query<Personal> query = session.createQuery(cr);
+		List<Personal> listPersonal = query.getResultList();
+		
+		if(listPersonal.isEmpty()) {
+			return null;
+		}
+		
+		return listPersonal.get(0); 
 	}
+	
+	/**
+	 * Obtiene una list de Personales en estado Baja a partir del dni
+	 * 
+	 * @param dni
+	 * @return Una lista con los Personales encontrados (0-n).
+	 */
+	public List<Personal> getPersonalBajaByDni(String dni) {
+
+		Session session = sessionFactory.getCurrentSession();
+		CriteriaBuilder cb = session.getCriteriaBuilder();
+		CriteriaQuery<Personal> cr = cb.createQuery(Personal.class);
+		Root<Personal> root = cr.from(Personal.class);
+
+		List<Predicate> predicates = new ArrayList<>();
+		predicates.add(cb.equal(root.get("documento"), dni));
+		predicates.add(cb.isNotNull(root.get("fechaBaja")));
+		
+		cr.select(root).where(predicates.toArray(new Predicate[]{}));
+		 
+		Query<Personal> query = session.createQuery(cr);
+		return query.getResultList();
+	}
+	
 }
