@@ -17,12 +17,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import eu.eurogestion.ese.domain.Cargo;
 import eu.eurogestion.ese.domain.Compania;
 import eu.eurogestion.ese.domain.Personal;
+import eu.eurogestion.ese.domain.TipoCompania;
 import eu.eurogestion.ese.pojo.CompaniaJSP;
 import eu.eurogestion.ese.pojo.UsuarioJSP;
 import eu.eurogestion.ese.pojo.UsuarioLoginJSP;
 import eu.eurogestion.ese.repository.CargoDAO;
 import eu.eurogestion.ese.repository.CompaniaDAO;
 import eu.eurogestion.ese.repository.PersonalDAO;
+import eu.eurogestion.ese.repository.TipoCompaniaDAO;
 
 @Controller
 public class LoginController {
@@ -35,11 +37,14 @@ public class LoginController {
 
 	@Autowired
 	public CargoDAO cargoDAO;
+	
+	@Autowired
+	public TipoCompaniaDAO tipoCompaniaDAO;
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(@ModelAttribute("login") UsuarioLoginJSP usuarioLogin, Model model) {
 		try {
-			if (personalDAOImpl.getPersonalByNameUserPassword(usuarioLogin.getNombre(), usuarioLogin.getPassword()) != null) {
+			if (personalDAO.getPersonalByNameUserPassword(usuarioLogin.getNombre(), usuarioLogin.getPassword()) != null) {
 				model.addAttribute("userName", usuarioLogin.getNombre());
 				return "welcome";
 			}
@@ -231,7 +236,8 @@ public class LoginController {
 
 			compania.setNombre(newCompania.getNombre());
 			if (!StringUtils.isBlank(newCompania.getTipoCompania())) {
-				compania.setTipoCompania(Integer.parseInt(newCompania.getTipoCompania()));
+				TipoCompania tipoCompania = tipoCompaniaDAO.get(Integer.parseInt(newCompania.getTipoCompania()));
+				compania.setTipoCompania(tipoCompania);
 			}
 			compania.setDocumento(newCompania.getDocumento());
 			if (!StringUtils.isBlank(newCompania.getTipoVia())) {
@@ -341,7 +347,7 @@ public class LoginController {
 	}
 
 	private boolean usuarioCorrecto(String usuario) {
-		Personal p = personalDAO.getpersonalByNameUser(usuario);
+		Personal p = personalDAO.getPersonalByNameUser(usuario);
 		return p == null;
 	}
 
