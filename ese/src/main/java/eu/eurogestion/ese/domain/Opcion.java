@@ -10,6 +10,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -29,5 +30,6 @@ public class Opcion implements java.io.Serializable {
 	private String nombre;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "opcion")
+	@ToString.Exclude
 	private List<Perfil> listPerfil;
 }

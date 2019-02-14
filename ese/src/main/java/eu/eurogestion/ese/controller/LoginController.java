@@ -37,14 +37,15 @@ public class LoginController {
 
 	@Autowired
 	public CargoDAO cargoDAO;
-	
+
 	@Autowired
 	public TipoCompaniaDAO tipoCompaniaDAO;
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(@ModelAttribute("login") UsuarioLoginJSP usuarioLogin, Model model) {
 		try {
-			if (personalDAO.getPersonalByNameUserPassword(usuarioLogin.getNombre(), usuarioLogin.getPassword()) != null) {
+			if (personalDAO.getPersonalByNameUserPassword(usuarioLogin.getNombre(),
+					usuarioLogin.getPassword()) != null) {
 				model.addAttribute("userName", usuarioLogin.getNombre());
 				return "welcome";
 			}
@@ -67,7 +68,7 @@ public class LoginController {
 	public String register(Model model) {
 		model.addAttribute("formularioUser", new UsuarioJSP());
 		try {
-			model.addAttribute("companias", companiaDAO.findAll());
+			model.addAttribute("companias", companiaDAO.findAllCompaniaAlta());
 			model.addAttribute("cargos", cargoDAO.findAll());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -154,7 +155,7 @@ public class LoginController {
 			personal.setApellido2(newUser.getApellido2());
 			personal.setDocumento(newUser.getDocumento());
 			personal.setFechaNac(fechaNac);
-			
+
 			if (!StringUtils.isBlank(newUser.getTipoVia())) {
 				personal.setTipoVia(newUser.getTipoVia());
 			}
@@ -170,11 +171,11 @@ public class LoginController {
 			if (!StringUtils.isBlank(newUser.getPuerta())) {
 				personal.setPuerta(newUser.getPuerta());
 			}
-			if (!StringUtils.isBlank(newUser.getIdCompania())) {
+			if (!StringUtils.isBlank(newUser.getIdCompania()) && newUser.getIdCompania() != "0") {
 				Compania compania = companiaDAO.get(Integer.parseInt(newUser.getIdCompania()));
 				personal.setCompania(compania);
 			}
-			if (!StringUtils.isBlank(newUser.getIdCargo())) {
+			if (!StringUtils.isBlank(newUser.getIdCargo()) && newUser.getIdCargo() != "0") {
 				Cargo cargo = cargoDAO.get(Integer.parseInt(newUser.getIdCargo()));
 				personal.setCargo(cargo);
 			}
@@ -235,7 +236,7 @@ public class LoginController {
 			Compania compania = new Compania();
 
 			compania.setNombre(newCompania.getNombre());
-			if (!StringUtils.isBlank(newCompania.getTipoCompania())) {
+			if (!StringUtils.isBlank(newCompania.getTipoCompania()) && newCompania.getTipoCompania() != "0") {
 				TipoCompania tipoCompania = tipoCompaniaDAO.get(Integer.parseInt(newCompania.getTipoCompania()));
 				compania.setTipoCompania(tipoCompania);
 			}

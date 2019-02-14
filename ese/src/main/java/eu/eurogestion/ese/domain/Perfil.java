@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -33,12 +34,15 @@ public class Perfil implements java.io.Serializable {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_permiso", nullable = false)
+	@ToString.Exclude
 	private TipoPermiso permiso;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_opcion", nullable = false)
+	@ToString.Exclude
 	private Opcion opcion;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "perfil")
+	@ToString.Exclude
 	private List<Rol> listRol;
 }
