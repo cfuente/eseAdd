@@ -13,19 +13,18 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "tipo_permiso", catalog = "eSe")
-public class TipoPermiso implements java.io.Serializable {
+@Table(name = "tipo_compania", catalog = "eSe")
+public class TipoCompania implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name = "id_permiso", unique = true, nullable = false)
-	private int idPermiso;
+	@Column(name = "id_tipo_compania", unique = true, nullable = false)
+	private int idTipoCompania;
 	
-	@Column(name = "valor", nullable = false, length = 0)
+	@Column(name = "valor", length = 25)
 	private String valor;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "permiso")
-	private List<Perfil> listPerfil;
-
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "compania")
+	private List<Compania> listCompania;
 }

@@ -62,7 +62,7 @@ public class Personal implements java.io.Serializable {
 	@Column(name = "puerta", length = 2)
 	private String puerta;
 	
-	@Column(name = "nombre_usuario", nullable = false, length = 20)
+	@Column(name = "nombre_usuario", length = 20)
 	private String nombreUsuario;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -73,15 +73,12 @@ public class Personal implements java.io.Serializable {
 	@JoinColumn(name = "id_cargo")
 	private Cargo cargo;
 	
-	@Column(name = "baja_logica")
-	private Boolean bajaLogica;
-	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "fecha_baja", length = 10)
 	private Date fechaBaja;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "personal")
-	private List<Rol> roles;
+	private List<Rol> listRol;
 	
 	@Column(name = "clave")
 	private String clave;
@@ -92,4 +89,6 @@ public class Personal implements java.io.Serializable {
 	@Column(name = "doc_empresa")
 	private String docEmpresa;
 
+	@Column(name = "email", length = 50)
+	private String email;
 }
