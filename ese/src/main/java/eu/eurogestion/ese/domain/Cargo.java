@@ -29,6 +29,5 @@ public class Cargo implements java.io.Serializable {
 	private String descripcion;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cargo")
-	private List<Personal> personales;
-
+	private List<Personal> listPersonal;
 }
