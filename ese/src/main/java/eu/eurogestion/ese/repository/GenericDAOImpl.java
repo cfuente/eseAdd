@@ -21,19 +21,6 @@ public class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T,
 	protected SessionFactory sessionFactory;
 
 	@Override
-	public T create() throws Exception {
-		try {
-			return getEntityClass().newInstance();
-		} catch (InstantiationException | IllegalAccessException ex) {
-			throw new RuntimeException(ex);
-		} catch (RuntimeException ex) {
-			throw ex;
-		} catch (Exception ex) {
-			throw new RuntimeException(ex);
-		}
-	}
-
-	@Override
 	public void saveOrUpdate(T entity) {
 
 		sessionFactory.getCurrentSession().saveOrUpdate(entity);                                                                                       

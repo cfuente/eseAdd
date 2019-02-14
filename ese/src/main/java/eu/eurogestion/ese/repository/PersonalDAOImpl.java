@@ -19,12 +19,6 @@ import eu.eurogestion.ese.domain.Personal;
 @Transactional
 public class PersonalDAOImpl extends GenericDAOImpl<Personal, Integer> implements PersonalDAO {
 
-	/**
-	 * Obtiene un Personal con nameUser y clave.
-	 * @param nameUser
-	 * @param clave
-	 * @return Personal si lo encuentra, null en caso contrario
-	 */
 	public Personal getPersonalByNameUserPassword(String nameUser, String clave) {
 		
 		Session session = sessionFactory.getCurrentSession();
@@ -49,12 +43,6 @@ public class PersonalDAOImpl extends GenericDAOImpl<Personal, Integer> implement
 		return listPersonal.get(0); 		
 	}
 
-	/**
-	 * Obtiene un Personal a partir de nameUser
-	 * 
-	 * @param nameUser
-	 * @return Personal si lo encuentra, null en caso contrario
-	 */
 	public Personal getPersonalByNameUser(String nameUser) {
 
 		Session session = sessionFactory.getCurrentSession();
@@ -77,12 +65,6 @@ public class PersonalDAOImpl extends GenericDAOImpl<Personal, Integer> implement
 		return listPersonal.get(0); 
 	}
 	
-	/**
-	 * Obtiene una list de Personales en estado Baja a partir del dni
-	 * 
-	 * @param dni
-	 * @return Una lista con los Personales encontrados (0-n).
-	 */
 	public List<Personal> getPersonalBajaByDni(String dni) {
 
 		Session session = sessionFactory.getCurrentSession();

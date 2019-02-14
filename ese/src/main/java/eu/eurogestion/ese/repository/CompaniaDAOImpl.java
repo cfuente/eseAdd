@@ -19,10 +19,6 @@ import eu.eurogestion.ese.domain.Compania;
 @Transactional
 public class CompaniaDAOImpl extends GenericDAOImpl<Compania, Integer> implements CompaniaDAO {
 
-	/**
-	 * Obtiene todas los Companias en activo.
-	 * @return Lista de Companias en activo (0-n).
-	 */
 	public List<Compania> findAllCompaniaAlta() {
 
 		Session session = sessionFactory.getCurrentSession();

@@ -19,10 +19,6 @@ import eu.eurogestion.ese.domain.Cargo;
 @Transactional
 public class CargoDAOImpl extends GenericDAOImpl<Cargo, Integer> implements CargoDAO {
 	
-	/**
-	 * Obtiene todos los Cargo en activo.
-	 * @return Lista de Cargos en activo (0-n).
-	 */
 	public List<Cargo> findAllCargoAlta() {
 		
 		Session session = sessionFactory.getCurrentSession();
