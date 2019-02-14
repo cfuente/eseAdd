@@ -29,6 +29,5 @@ public class Opcion implements java.io.Serializable {
 	private String nombre;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "opcion")
-	private List<Perfil> perfiles;
-
+	private List<Perfil> listPerfil;
 }

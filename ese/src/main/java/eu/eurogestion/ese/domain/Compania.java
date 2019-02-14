@@ -7,6 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -28,8 +30,9 @@ public class Compania implements java.io.Serializable {
 	@Column(name = "nombre", nullable = false, length = 200)
 	private String nombre;
 	
-	@Column(name = "tipo_compania", nullable = false)
-	private int tipoCompania;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_tipo_compania", nullable = false)
+	private TipoCompania tipoCompania;
 	
 	@Column(name = "documento", nullable = false, length = 14)
 	private String documento;
@@ -49,14 +52,10 @@ public class Compania implements java.io.Serializable {
 	@Column(name = "puerta", length = 10)
 	private String puerta;
 	
-	@Column(name = "baja_logica")
-	private Boolean bajaLogica;
-	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "fecha_baja", length = 10)
 	private Date fechaBaja;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "compania")
-	private List<Personal> personales;
-
+	private List<Personal> listPersonal;
 }

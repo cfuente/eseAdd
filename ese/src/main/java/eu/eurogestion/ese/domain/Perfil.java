@@ -40,6 +40,5 @@ public class Perfil implements java.io.Serializable {
 	private Opcion opcion;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "perfil")
-	private List<Rol> roles;
-
+	private List<Rol> listRol;
 }
