@@ -15,6 +15,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -32,6 +33,7 @@ public class Compania implements java.io.Serializable {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_tipo_compania", nullable = false)
+	@ToString.Exclude
 	private TipoCompania tipoCompania;
 	
 	@Column(name = "documento", nullable = false, length = 14)
@@ -57,5 +59,10 @@ public class Compania implements java.io.Serializable {
 	private Date fechaBaja;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "compania")
+	@ToString.Exclude
 	private List<Personal> listPersonal;
+
+	
+	
+	
 }

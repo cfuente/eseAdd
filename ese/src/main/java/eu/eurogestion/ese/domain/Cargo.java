@@ -10,6 +10,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -29,5 +30,6 @@ public class Cargo implements java.io.Serializable {
 	private String descripcion;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cargo")
+	@ToString.Exclude
 	private List<Personal> listPersonal;
 }

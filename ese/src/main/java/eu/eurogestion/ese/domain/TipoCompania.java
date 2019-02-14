@@ -10,6 +10,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -25,6 +26,7 @@ public class TipoCompania implements java.io.Serializable {
 	@Column(name = "valor", length = 25)
 	private String valor;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "compania")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tipoCompania")
+	@ToString.Exclude
 	private List<Compania> listCompania;
 }
