@@ -39,7 +39,7 @@ public class LoginController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(@ModelAttribute("login") UsuarioLoginJSP usuarioLogin, Model model) {
 		try {
-			if (personalDAO.login(usuarioLogin.getNombre(), usuarioLogin.getPassword())) {
+			if (personalDAOImpl.getPersonalByNameUserPassword(usuarioLogin.getNombre(), usuarioLogin.getPassword()) != null) {
 				model.addAttribute("userName", usuarioLogin.getNombre());
 				return "welcome";
 			}
@@ -143,11 +143,13 @@ public class LoginController {
 			if (!StringUtils.isBlank(newUser.getPassword())) {
 				personal.setClave(newUser.getPassword());
 			}
+
 			personal.setNombre(newUser.getNombre());
 			personal.setApellido1(newUser.getApellido());
 			personal.setApellido2(newUser.getApellido2());
 			personal.setDocumento(newUser.getDocumento());
 			personal.setFechaNac(fechaNac);
+			
 			if (!StringUtils.isBlank(newUser.getTipoVia())) {
 				personal.setTipoVia(newUser.getTipoVia());
 			}
@@ -181,9 +183,7 @@ public class LoginController {
 				personal.setEmail(newUser.getEmail());
 			}
 			personalDAO.saveOrUpdate(personal);
-		} catch (
-
-		Exception e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return falloRegistro(model);
@@ -343,7 +343,6 @@ public class LoginController {
 	private boolean usuarioCorrecto(String usuario) {
 		Personal p = personalDAO.getpersonalByNameUser(usuario);
 		return p == null;
-
 	}
 
 }
