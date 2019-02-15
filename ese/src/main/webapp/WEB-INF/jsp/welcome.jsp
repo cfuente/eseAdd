@@ -7,6 +7,12 @@
 </head>
 
 <body>
-	<h2>Welcome ${userName}</h2>
+	<h2 align="center">Welcome ${userName}</h2>
+	<div style="text-align: center;">
+		<br /> <br /> <br /> <a href="register.do"><input type="button"
+			value="Crear una cuenta" /></a> <br /> <br /> <br /> <a
+			href="registerCompania.do"><input type="button"
+			value="Crear una compañia" /></a> <br />
+	</div>
 </body>
 </html>

@@ -13,9 +13,10 @@
 <body>
 	<form:form modelAttribute="login" id="formLogin" method="POST"
 		action="login.do" class="form-signin ">
-		<h2 class="form-heading">Acceso</h2>
+		<h2 class="form-heading" align="center">Acceso</h2>
 
-		<div class="form-group ${error != null ? 'has-error' : ''}">
+		<div class="form-group ${error != null ? 'has-error' : ''}"
+			style="text-align: center;">
 			<span>${message}</span> <input name="nombre" id="usuario" type="text"
 				class="form-control" placeholder="Usuario" autofocus /> <input
 				name="password" id="password" type="password" class="form-control"

@@ -13,11 +13,7 @@
 <body>
 	<h1 align="center">BIENVENIDO</h1>
 	<div style="text-align: center;">
-		<a href="login.do"><input type="button" value="Loguearse" /></a> <br />
-		<br /> <br /> <a href="register.do"><input type="button"
-			value="Crear una cuenta" /></a> <br /> <br /> <br /> <a
-			href="registerCompania.do"><input type="button"
-			value="Crear una compañia" /></a> <br />
+		<a href="login.do"><input type="button" value="Loguearse" /></a> 
 	</div>
 </body>
 </html>
