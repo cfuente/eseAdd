@@ -31,17 +31,23 @@ function validarFormularioEmpresa() {
 	if (validarVacio(nombre)) {
 		error = true;
 		document.getElementById('errorNombre').innerHTML="El nombre no puede estar vacio"
+	}else{
+		document.getElementById('errorNombre').innerHTML=""
 	}
 	var documento = document.getElementById('documento').value;
 	if (validarVacio(documento)) {
 		error = true;
 		document.getElementById('errorDocumento').innerHTML="El documento no puede estar vacio"
+	}else{
+		document.getElementById('errorDocumento').innerHTML=""
 	}
 	var numero = document.getElementById('numero').value;
 	if (!validarVacio(numero)) {
 		if(isNaN(numero)){
 			document.getElementById('errorNumero').innerHTML="El numero tiene que ser numerico"
 			error = true;
+		}else{
+			document.getElementById('errorNumero').innerHTML=""
 		}
 	}
 	
@@ -50,6 +56,8 @@ function validarFormularioEmpresa() {
 		if(isNaN(planta)){
 			document.getElementById('errorPlanta').innerHTML="La planta tiene que ser numerica"
 			error = true;
+		}else{
+			document.getElementById('errorPlanta').innerHTML=""
 		}
 	}
 	if (!error) {
@@ -67,21 +75,26 @@ function validarFormularioCliente() {
 
 	if((!validarVacio(usuario) && validarVacio(password)) ||(validarVacio(usuario) && !validarVacio(password))){
 		error=true;
-		alert("error");
 	}
 	if (todosLosDatos && password !== passwordConfirm) {
 		error = true;
 		document.getElementById('error').innerHTML="Las contrase&ntilde;as tienen que ser iguales"
+	}else{
+		document.getElementById('error').innerHTML=""
 	}
 	var nombre = document.getElementById('nombre').value;
 	if (validarVacio(nombre)) {
 		document.getElementById('errorNombre').innerHTML="El nombre no puede estar vacio"
 		error = true;
+	}else{
+		document.getElementById('errorNombre').innerHTML=""
 	}
 	var apellido = document.getElementById('apellido').value;
 	if (validarVacio(apellido)) {
 		document.getElementById('errorApellido').innerHTML="El apellido no puede estar vacio"
 		error = true;
+	}else{
+		document.getElementById('errorApellido').innerHTML=""
 	}
 	var fechaNacimiento = document.getElementById('fechaNacimiento').value;
 	if (validarVacio(fechaNacimiento)) {
@@ -91,6 +104,8 @@ function validarFormularioCliente() {
 		document.getElementById('errorFecha').innerHTML="La fecha de nacimiento es incorrecta"
 		error = true;
 		
+	}else{
+		document.getElementById('errorFecha').innerHTML=""
 	}
 	var documento = document.getElementById('documento').value;
 	if (validarVacio(documento)) {
@@ -99,6 +114,8 @@ function validarFormularioCliente() {
 	}else if(!documentoCorrecto(documento)){
 		document.getElementById('errorDocumento').innerHTML="El documento es incorrecto"
 		error = true;
+	}else{
+		document.getElementById('errorDocumento').innerHTML=""
 	}
 	
 	var numero = document.getElementById('numero').value;
@@ -106,6 +123,8 @@ function validarFormularioCliente() {
 		if(isNaN(numero)){
 			document.getElementById('errorNumero').innerHTML="El numero tiene que ser numerico"
 			error = true;
+		}else{
+			document.getElementById('errorNumero').innerHTML=""
 		}
 	}
 	
@@ -114,6 +133,8 @@ function validarFormularioCliente() {
 		if(isNaN(planta)){
 			document.getElementById('errorPlanta').innerHTML="La planta tiene que ser numerica"
 			error = true;
+		}else{
+			document.getElementById('errorPlanta').innerHTML=""
 		}
 	}
 	
