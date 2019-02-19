@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Fetch;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import eu.eurogestion.ese.domain.Personal;
+import eu.eurogestion.ese.domain.Rol;
 
 /**
  * @author Rmerino, alvaro
@@ -30,13 +32,17 @@ public class PersonalDAOImpl extends GenericDAOImpl<Personal, Integer> implement
 		CriteriaBuilder cb = session.getCriteriaBuilder();
 		CriteriaQuery<Personal> cr = cb.createQuery(Personal.class);
 		Root<Personal> root = cr.from(Personal.class);
+		
+		Fetch<?,?> fetch = root.fetch("rol").fetch("listRolPermiso").fetch("permiso");
+		fetch.fetch("tipoPermiso");
+		fetch.fetch("opcion");
 
 		List<Predicate> predicates = new ArrayList<>();
 		predicates.add(cb.equal(root.get("nombreUsuario"), nameUser));
 		predicates.add(cb.equal(root.get("clave"), clave));
 		predicates.add(cb.isNull(root.get("fechaBaja")));
 		
-		cr.select(root).where(predicates.toArray(new Predicate[]{}));
+		cr.select(root).distinct(true).where(predicates.toArray(new Predicate[]{}));
 		 
 		Query<Personal> query = session.createQuery(cr);
 		List<Personal> listPersonal = query.getResultList();

@@ -25,8 +25,8 @@ public class TipoPermiso implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "id_permiso", unique = true, nullable = false)
-	private int idPermiso;
+	@Column(name = "id_tipo_permiso", unique = true, nullable = false)
+	private int idTipoPermiso;
 
 	@Column(name = "valor", nullable = false, length = 20)
 	private String valor;

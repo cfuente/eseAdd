@@ -23,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T, ID> {
 
 	@Autowired
-	protected SessionFactory sessionFactory;
+	SessionFactory sessionFactory;
 
 	@Override
 	public void saveOrUpdate(T entity) {

@@ -24,7 +24,7 @@ import lombok.ToString;
 
 @Data
 @Entity
-@Table(name = "perfil", catalog = "eSe")
+@Table(name = "permiso", catalog = "eSe")
 public class Permiso implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
