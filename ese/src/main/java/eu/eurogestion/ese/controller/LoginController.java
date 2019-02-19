@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import eu.eurogestion.ese.domain.Cargo;
 import eu.eurogestion.ese.domain.Compania;
 import eu.eurogestion.ese.domain.Personal;
+import eu.eurogestion.ese.domain.Rol;
 import eu.eurogestion.ese.domain.TipoCompania;
 import eu.eurogestion.ese.pojo.CompaniaJSP;
 import eu.eurogestion.ese.pojo.UsuarioJSP;
@@ -26,6 +27,7 @@ import eu.eurogestion.ese.pojo.UsuarioLoginJSP;
 import eu.eurogestion.ese.repository.CargoDAO;
 import eu.eurogestion.ese.repository.CompaniaDAO;
 import eu.eurogestion.ese.repository.PersonalDAO;
+import eu.eurogestion.ese.repository.RolDAO;
 import eu.eurogestion.ese.repository.TipoCompaniaDAO;
 import lombok.extern.slf4j.Slf4j;
 
@@ -60,6 +62,12 @@ public class LoginController {
 	 */
 	@Autowired
 	public TipoCompaniaDAO tipoCompaniaDAO;
+
+	/**
+	 * Repositorio de la clase de dominio TipoCompania
+	 */
+	@Autowired
+	public RolDAO rolDAO;
 
 	/**
 	 * Metodo que hace el login
@@ -116,6 +124,11 @@ public class LoginController {
 		}
 		try {
 			model.addAttribute("cargos", cargoDAO.findAll());
+		} catch (Exception e) {
+			log.error(e.getMessage());
+		}
+		try {
+			model.addAttribute("roles", rolDAO.findAll());
 		} catch (Exception e) {
 			log.error(e.getMessage());
 		}
@@ -242,6 +255,11 @@ public class LoginController {
 		}
 		try {
 			model.addAttribute("cargos", cargoDAO.findAll());
+		} catch (Exception e) {
+			log.error(e.getMessage());
+		}
+		try {
+			model.addAttribute("roles", rolDAO.findAll());
 		} catch (Exception e) {
 			log.error(e.getMessage());
 		}
@@ -456,6 +474,11 @@ public class LoginController {
 		if (!StringUtils.isBlank(newUser.getIdCargo()) && newUser.getIdCargo() != "0") {
 			Cargo cargo = cargoDAO.get(Integer.parseInt(newUser.getIdCargo()));
 			personal.setCargo(cargo);
+		}
+		
+		if (!StringUtils.isBlank(newUser.getIdRol()) && newUser.getIdRol() != "0") {
+			Rol rol = rolDAO.get(Integer.parseInt(newUser.getIdRol()));
+			personal.setRol(rol);
 		}
 		if (!StringUtils.isBlank(newUser.getLicencia())) {
 			personal.setLicencia(newUser.getLicencia());

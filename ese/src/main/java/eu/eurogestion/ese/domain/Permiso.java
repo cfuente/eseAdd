@@ -44,7 +44,7 @@ public class Permiso implements java.io.Serializable {
 	@ToString.Exclude
 	private Opcion opcion;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "rol_permiso")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "permiso")
 	@ToString.Exclude
 	private List<RolPermiso> listRolPermiso;
 }

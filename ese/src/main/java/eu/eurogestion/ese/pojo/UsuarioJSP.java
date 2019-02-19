@@ -22,4 +22,5 @@ public class UsuarioJSP {
 	private String licencia;
 	private String docEmpresa;
 	private String email;
+	private String idRol;
 }

@@ -84,10 +84,6 @@ public class Personal implements java.io.Serializable {
 	@Temporal(TemporalType.DATE)
 	@Column(name = "fecha_baja", length = 10)
 	private Date fechaBaja;
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "personal")
-	@ToString.Exclude
-	private List<Rol> listRol;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_rol")

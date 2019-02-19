@@ -28,10 +28,10 @@ public class TipoPermiso implements java.io.Serializable {
 	@Column(name = "id_permiso", unique = true, nullable = false)
 	private int idPermiso;
 
-	@Column(name = "valor", nullable = false, length = 0)
+	@Column(name = "valor", nullable = false, length = 20)
 	private String valor;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "permiso")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tipoPermiso")
 	@ToString.Exclude
 	private List<Permiso> listPermiso;
 }

@@ -38,7 +38,7 @@
 						</tr>
 						<tr>
 							<td><form:label path="password">Contraseña:</form:label></td>
-							<td><form:password id="password" path="password" 
+							<td><form:password id="password" path="password"
 									placeholder="Contraseña" /></td>
 							<td id="errorPassword">${errorPassword}</td>
 						</tr>
@@ -65,19 +65,19 @@
 						</tr>
 						<tr>
 							<td><form:label path="apellido2">Segundo apellido:</form:label></td>
-							<td><form:input path="apellido2" id="apellido2" maxlength="30"
-									placeholder="Segundo apellido" /></td>
+							<td><form:input path="apellido2" id="apellido2"
+									maxlength="30" placeholder="Segundo apellido" /></td>
 						</tr>
 						<tr>
 							<td><form:label path="documento">Documento:</form:label></td>
-							<td><form:input path="documento" id="documento" maxlength="14"
-									placeholder="Documento" /></td>
+							<td><form:input path="documento" id="documento"
+									maxlength="14" placeholder="Documento" /></td>
 							<td id="errorDocumento">${errorDocumento}</td>
 						</tr>
 						<tr>
 							<td><form:label path="fechaNacimiento">Fecha de Nacimiento(dd/mm/aaaa):</form:label></td>
-							<td><form:input path="fechaNacimiento" id="fechaNacimiento" maxlength="10"
-									placeholder="Fecha nacimiento" /></td>
+							<td><form:input path="fechaNacimiento" id="fechaNacimiento"
+									maxlength="10" placeholder="Fecha nacimiento" /></td>
 
 
 							<td id="errorFecha">${errorFecha}</td>
@@ -89,11 +89,12 @@
 						</tr>
 						<tr>
 							<td><form:label path="via">Via:</form:label></td>
-							<td><form:input path="via" id="via" placeholder="Via" maxlength="30" /></td>
+							<td><form:input path="via" id="via" placeholder="Via"
+									maxlength="30" /></td>
 						</tr>
 						<tr>
 							<td><form:label path="numero">Numero:</form:label></td>
-							<td><form:input path="numero" id="numero" 
+							<td><form:input path="numero" id="numero"
 									placeholder="Numero" /></td>
 							<td id="errorNumero">${errorNumero}</td>
 						</tr>
@@ -127,8 +128,17 @@
 								</form:select></td>
 						</tr>
 						<tr>
+							<td><form:label path="idRol">Rol:</form:label></td>
+							<td><form:select path="idRol" id="idRol">
+									<form:option value="0">Selecciona uno:</form:option>
+									<c:forEach items="${roles}" var="rol">
+										<form:option value="${rol.idRol}">${rol.nombre}</form:option>
+									</c:forEach>
+								</form:select></td>
+						</tr>
+						<tr>
 							<td><form:label path="licencia">Licencia:</form:label></td>
-							<td><form:input path="licencia" id="licencia" 
+							<td><form:input path="licencia" id="licencia"
 									placeholder="Licencia" /></td>
 						</tr>
 						<tr>
