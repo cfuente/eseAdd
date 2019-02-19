@@ -15,6 +15,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import eu.eurogestion.ese.domain.Compania;
 
+/**
+ * @author Rmerino, alvaro
+ *
+ */
+
 @Repository
 @Transactional
 public class CompaniaDAOImpl extends GenericDAOImpl<Compania, Integer> implements CompaniaDAO {
@@ -34,5 +39,4 @@ public class CompaniaDAOImpl extends GenericDAOImpl<Compania, Integer> implement
 		Query<Compania> query = session.createQuery(cr);
 		return query.getResultList();
 	}
-
 }

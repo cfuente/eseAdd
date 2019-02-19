@@ -4,6 +4,10 @@ import java.util.List;
 
 import eu.eurogestion.ese.domain.Cargo;
 
+/**
+ * @author Rmerino, alvaro
+ *
+ */
 public interface CargoDAO extends GenericDAO<Cargo, Integer> {
 
 	/**

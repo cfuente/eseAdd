@@ -12,6 +12,11 @@ import javax.persistence.Table;
 import lombok.Data;
 import lombok.ToString;
 
+/**
+ * @author Rmerino, alvaro
+ *
+ */
+
 @Data
 @Entity
 @Table(name = "tipo_permiso", catalog = "eSe")
@@ -28,5 +33,5 @@ public class TipoPermiso implements java.io.Serializable {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "permiso")
 	@ToString.Exclude
-	private List<Perfil> listPerfil;
+	private List<Permiso> listPermiso;
 }

@@ -1,7 +1,12 @@
 package eu.eurogestion.ese.repository;
 
-import eu.eurogestion.ese.domain.Perfil;
+import eu.eurogestion.ese.domain.Permiso;
 
-public interface PerfilDAO extends GenericDAO<Perfil, Integer> {
+/**
+ * @author Rmerino, alvaro
+ *
+ */
+
+public interface PerfilDAO extends GenericDAO<Permiso, Integer> {
 
 }

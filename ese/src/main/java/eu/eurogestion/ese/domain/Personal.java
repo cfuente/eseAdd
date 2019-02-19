@@ -20,6 +20,11 @@ import javax.persistence.TemporalType;
 import lombok.Data;
 import lombok.ToString;
 
+/**
+ * @author Rmerino, alvaro
+ *
+ */
+
 @Data
 @Entity
 @Table(name = "personal", catalog = "eSe")
@@ -83,6 +88,11 @@ public class Personal implements java.io.Serializable {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "personal")
 	@ToString.Exclude
 	private List<Rol> listRol;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_rol")
+	@ToString.Exclude
+	private Rol rol;
 
 	@Column(name = "clave")
 	private String clave;

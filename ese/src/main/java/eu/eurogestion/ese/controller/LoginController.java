@@ -30,7 +30,7 @@ import eu.eurogestion.ese.repository.TipoCompaniaDAO;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @author Eurogestion: alvaro
+ * @author alvaro
  *
  */
 @Slf4j

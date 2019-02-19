@@ -17,32 +17,34 @@ import javax.persistence.Table;
 import lombok.Data;
 import lombok.ToString;
 
+/**
+ * @author Rmerino, alvaro
+ *
+ */
+
 @Data
 @Entity
 @Table(name = "perfil", catalog = "eSe")
-public class Perfil implements java.io.Serializable {
+public class Permiso implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "id_perfil", unique = true, nullable = false)
-	private Integer idPerfil;
-	
-	@Column(name = "nombre", nullable = false, length = 20)
-	private String nombre;
+	@Column(name = "id_permiso", unique = true, nullable = false)
+	private Integer idPermiso;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_permiso", nullable = false)
+	@JoinColumn(name = "id_tipo_permiso", nullable = false)
 	@ToString.Exclude
-	private TipoPermiso permiso;
+	private TipoPermiso tipoPermiso;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_opcion", nullable = false)
 	@ToString.Exclude
 	private Opcion opcion;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "perfil")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "rol_permiso")
 	@ToString.Exclude
-	private List<Rol> listRol;
+	private List<RolPermiso> listRolPermiso;
 }

@@ -12,6 +12,11 @@ import javax.persistence.Table;
 import lombok.Data;
 import lombok.ToString;
 
+/**
+ * @author Rmerino, alvaro
+ *
+ */
+
 @Data
 @Entity
 @Table(name = "tipo_compania", catalog = "eSe")

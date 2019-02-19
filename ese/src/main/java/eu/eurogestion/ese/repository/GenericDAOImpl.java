@@ -14,6 +14,11 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * @author Rmerino, alvaro
+ *
+ */
+
 @Transactional
 public class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T, ID> {
 

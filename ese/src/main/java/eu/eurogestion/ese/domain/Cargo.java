@@ -12,23 +12,28 @@ import javax.persistence.Table;
 import lombok.Data;
 import lombok.ToString;
 
+/**
+ * @author Rmerino, alvaro
+ *
+ */
+
 @Data
 @Entity
 @Table(name = "cargo", catalog = "eSe")
 public class Cargo implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@Column(name = "id_cargo", unique = true, nullable = false)
 	private int idCargo;
-	
+
 	@Column(name = "nombre", length = 200)
 	private String nombre;
-	
+
 	@Column(name = "descripcion", length = 500)
 	private String descripcion;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cargo")
 	@ToString.Exclude
 	private List<Personal> listPersonal;

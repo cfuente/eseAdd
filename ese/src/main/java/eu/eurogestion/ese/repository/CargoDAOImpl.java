@@ -15,6 +15,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import eu.eurogestion.ese.domain.Cargo;
 
+/**
+ * @author Rmerino, alvaro
+ *
+ */
+
 @Repository
 @Transactional
 public class CargoDAOImpl extends GenericDAOImpl<Cargo, Integer> implements CargoDAO {
@@ -34,5 +39,4 @@ public class CargoDAOImpl extends GenericDAOImpl<Cargo, Integer> implements Carg
 		Query<Cargo> query = session.createQuery(cr);
 		return query.getResultList();
 	}
-
 }

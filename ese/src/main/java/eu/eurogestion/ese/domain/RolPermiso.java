@@ -2,42 +2,42 @@ package eu.eurogestion.ese.domain;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
 import lombok.ToString;
 
 /**
- * @author Rmerino, alvaro
+ * @author Rmerino
  *
  */
 
 @Data
 @Entity
-@Table(name = "rol", catalog = "eSe")
-public class Rol implements java.io.Serializable {
+@Table(name = "rol_permiso", catalog = "eSe")
+public class RolPermiso implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "id_rol", unique = true, nullable = false)
-	private Integer idRol;
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "rol")
-	@ToString.Exclude
-	private List<Personal> listPersonal;
+	@Column(name = "id_rol_permiso", unique = true, nullable = false)
+	private Integer idRolPermiso;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "rol")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_rol", nullable = false)
 	@ToString.Exclude
-	private List<RolPermiso> listRolPermiso;
-
+	private Rol rol;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_permiso", nullable = false)
+	@ToString.Exclude
+	private Permiso permiso;
 }

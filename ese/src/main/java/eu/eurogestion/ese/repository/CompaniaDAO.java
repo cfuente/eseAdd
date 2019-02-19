@@ -4,6 +4,12 @@ import java.util.List;
 
 import eu.eurogestion.ese.domain.Compania;
 
+
+/**
+ * @author Rmerino, alvaro
+ *
+ */
+
 public interface CompaniaDAO extends GenericDAO<Compania, Integer> {
 
 	/**

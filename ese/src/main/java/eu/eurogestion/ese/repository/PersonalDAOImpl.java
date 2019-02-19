@@ -15,6 +15,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import eu.eurogestion.ese.domain.Personal;
 
+/**
+ * @author Rmerino, alvaro
+ *
+ */
+
 @Repository
 @Transactional
 public class PersonalDAOImpl extends GenericDAOImpl<Personal, Integer> implements PersonalDAO {
@@ -81,5 +86,4 @@ public class PersonalDAOImpl extends GenericDAOImpl<Personal, Integer> implement
 		Query<Personal> query = session.createQuery(cr);
 		return query.getResultList();
 	}
-	
 }
