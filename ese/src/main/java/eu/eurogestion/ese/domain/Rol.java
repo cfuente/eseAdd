@@ -31,6 +31,9 @@ public class Rol implements java.io.Serializable {
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id_rol", unique = true, nullable = false)
 	private Integer idRol;
+	
+	@Column(name = "nombre", length = 20)
+	private String nombre;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "rol")
 	@ToString.Exclude
