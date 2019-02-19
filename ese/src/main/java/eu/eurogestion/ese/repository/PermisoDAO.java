@@ -7,6 +7,6 @@ import eu.eurogestion.ese.domain.Permiso;
  *
  */
 
-public interface PerfilDAO extends GenericDAO<Permiso, Integer> {
+public interface PermisoDAO extends GenericDAO<Permiso, Integer> {
 
 }
