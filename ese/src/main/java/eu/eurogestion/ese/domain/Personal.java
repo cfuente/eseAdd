@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import lombok.Data;
 import lombok.ToString;
@@ -84,7 +85,7 @@ public class Personal implements java.io.Serializable {
 	@Temporal(TemporalType.DATE)
 	@Column(name = "fecha_baja", length = 10)
 	private Date fechaBaja;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_rol")
 	@ToString.Exclude
@@ -101,4 +102,22 @@ public class Personal implements java.io.Serializable {
 
 	@Column(name = "email", length = 50)
 	private String email;
+
+	@Transient
+	private String nombrePersonal;
+
+	@Transient
+	public String getNombrePersonal() {
+		String nombreString = nombre + " " + apellido1;
+
+		if (cargo != null) {
+			nombreString += " -> " + cargo.getNombre();
+		}
+		return nombreString;
+	}
+
+	@Transient
+	public void setNombrePersonal() {
+		;
+	}
 }

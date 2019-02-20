@@ -3,6 +3,8 @@ package eu.eurogestion.ese.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.CollectionUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,6 +23,7 @@ import eu.eurogestion.ese.domain.Cargo;
 import eu.eurogestion.ese.domain.Compania;
 import eu.eurogestion.ese.domain.Personal;
 import eu.eurogestion.ese.domain.Rol;
+import eu.eurogestion.ese.domain.RolPermiso;
 import eu.eurogestion.ese.domain.TipoCompania;
 import eu.eurogestion.ese.pojo.CompaniaJSP;
 import eu.eurogestion.ese.pojo.UsuarioJSP;
@@ -70,7 +74,9 @@ public class LoginController {
 	public RolDAO rolDAO;
 
 	/**
-	 * Metodo que hace el login
+	 * Metodo que busca en base de datos el usuario y la contraseña introducidos en
+	 * pantalla para ver si existe en el sistema y rellena el objeto usuario de la
+	 * sesion
 	 * 
 	 * @param usuarioLogin
 	 * @param model
@@ -80,9 +86,18 @@ public class LoginController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(@ModelAttribute("login") UsuarioLoginJSP usuarioLogin, Model model, HttpSession session) {
 		try {
-			if (personalDAO.getPersonalByNameUserPassword(usuarioLogin.getNombre(),
-					usuarioLogin.getPassword()) != null) {
-				model.addAttribute("userName", usuarioLogin.getNombre());
+			Personal personal = personalDAO.getPersonalByNameUserPassword(usuarioLogin.getNombre(),
+					usuarioLogin.getPassword());
+			if (personal != null) {
+				model.addAttribute("userName", personal.getNombre());
+				Map<String, Integer> mapa = new HashMap<>();
+				for (RolPermiso rolPermiso : personal.getRol().getListRolPermiso()) {
+					mapa.put(String.valueOf(rolPermiso.getPermiso().getOpcion().getNombre()),
+							rolPermiso.getPermiso().getTipoPermiso().getIdTipoPermiso());
+
+				}
+
+				usuarioLogin.setLista(mapa);
 				session.setAttribute("usuario", usuarioLogin);
 				return "welcome";
 			}
@@ -137,7 +152,8 @@ public class LoginController {
 	}
 
 	/**
-	 * Metodo que registra un usuario
+	 * Metodo que registra un usuario en base de datos con los datos introducidos en
+	 * la pantalla despues de validar dichos datos
 	 * 
 	 * @param newUser
 	 * @param result
@@ -467,16 +483,16 @@ public class LoginController {
 		if (!StringUtils.isBlank(newUser.getPuerta())) {
 			personal.setPuerta(newUser.getPuerta());
 		}
-		if (!StringUtils.isBlank(newUser.getIdCompania()) && newUser.getIdCompania() != "0") {
+		if (!StringUtils.isBlank(newUser.getIdCompania()) && !"0".equals(newUser.getIdCompania())) {
 			Compania compania = companiaDAO.get(Integer.parseInt(newUser.getIdCompania()));
 			personal.setCompania(compania);
 		}
-		if (!StringUtils.isBlank(newUser.getIdCargo()) && newUser.getIdCargo() != "0") {
+		if (!StringUtils.isBlank(newUser.getIdCargo()) && !"0".equals(newUser.getIdCargo())) {
 			Cargo cargo = cargoDAO.get(Integer.parseInt(newUser.getIdCargo()));
 			personal.setCargo(cargo);
 		}
-		
-		if (!StringUtils.isBlank(newUser.getIdRol()) && newUser.getIdRol() != "0") {
+
+		if (!StringUtils.isBlank(newUser.getIdRol()) && !"0".equals(newUser.getIdRol())) {
 			Rol rol = rolDAO.get(Integer.parseInt(newUser.getIdRol()));
 			personal.setRol(rol);
 		}
@@ -504,7 +520,7 @@ public class LoginController {
 		Compania compania = new Compania();
 
 		compania.setNombre(newCompania.getNombre());
-		if (!StringUtils.isBlank(newCompania.getTipoCompania()) && newCompania.getTipoCompania() != "0") {
+		if (!StringUtils.isBlank(newCompania.getTipoCompania()) && "0".equals(newCompania.getTipoCompania())) {
 			TipoCompania tipoCompania = tipoCompaniaDAO.get(Integer.parseInt(newCompania.getTipoCompania()));
 			compania.setTipoCompania(tipoCompania);
 		}
