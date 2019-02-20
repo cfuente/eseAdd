@@ -2,6 +2,20 @@
  * 
  */
 
+function filtrarPersonal() {
+	document.getElementById("personal").action="filtrarPersonal.do"
+	document.getElementById("personal").submit();
+}
+function borrarFiltrosPersonal(){
+	document.getElementById("personal").action="borrarFiltrosPersonal.do"
+	document.getElementById("personal").submit();
+}
+
+function informePersonal(){
+	document.getElementById("personal").action="informePersonal.do"
+	document.getElementById("personal").submit();
+}
+
 function validarFormularioLogin() {
 	var error=false;
 	var codigoError="";
