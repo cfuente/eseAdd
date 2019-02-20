@@ -130,6 +130,7 @@ public class PersonalDAOImpl extends GenericDAOImpl<Personal, Integer> implement
 		}
 		if (!StringUtils.isBlank(apellido)) {
 			predicates.add(cb.like(root.get("apellido1"), "%" + apellido + "%"));
+
 		}
 		if (!StringUtils.isBlank(idCargo) && !"0".equals(idCargo)) {
 			predicates.add(cb.equal(root.get("cargo").get("idCargo"), idCargo));

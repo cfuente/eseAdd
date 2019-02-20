@@ -118,6 +118,6 @@ public class Personal implements java.io.Serializable {
 
 	@Transient
 	public void setNombrePersonal() {
-		
+
 	}
 }

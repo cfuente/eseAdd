@@ -16,6 +16,7 @@
 
 	<form:form modelAttribute="formularioPersonal" id="personal"
 		method="POST">
+
 		<form:label path="nombre">Nombre:</form:label>
 		<form:input path="nombre" id="nombre" placeholder="nombre" />
 		<form:label path="apellido">Apellido:</form:label>
@@ -39,6 +40,7 @@
 			itemValue="idPersonal" size="10" />
 		<input type="button" onclick="informePersonal();" value="Informe"
 			class="Informe" />
+
 	</form:form>
 
 

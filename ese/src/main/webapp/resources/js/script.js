@@ -11,10 +11,12 @@ function borrarFiltrosPersonal(){
 	document.getElementById("personal").submit();
 }
 
+
 function informePersonal(){
 	document.getElementById("personal").action="informePersonal.do"
 	document.getElementById("personal").submit();
 }
+
 
 function validarFormularioLogin() {
 	var error=false;

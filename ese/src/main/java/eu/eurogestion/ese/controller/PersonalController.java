@@ -44,6 +44,7 @@ public class PersonalController {
 	 * @param session
 	 * @return
 	 */
+
 	@RequestMapping(value = "/informePersonal", method = RequestMethod.POST)
 	public String login(@ModelAttribute("formularioPersonal") PersonalJSP personal, Model model, HttpSession session) {
 
@@ -108,6 +109,7 @@ public class PersonalController {
 		personal.setApellido(null);
 		personal.setIdCargo(null);
 		personal.setListIdPersonal(null);
+
 		try {
 			model.addAttribute("personas", personalDAO.obtenerPersonal());
 		} catch (Exception e) {
