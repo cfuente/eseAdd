@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Fetch;
-import javax.persistence.criteria.Join;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
@@ -17,9 +16,7 @@ import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import eu.eurogestion.ese.domain.Cargo;
 import eu.eurogestion.ese.domain.Personal;
-import eu.eurogestion.ese.domain.Rol;
 
 /**
  * @author Rmerino, alvaro
@@ -125,7 +122,6 @@ public class PersonalDAOImpl extends GenericDAOImpl<Personal, Integer> implement
 		List<Predicate> predicates = new ArrayList<>();
 		predicates.add(cb.isNull(root.get("fechaBaja")));
 		if (!StringUtils.isBlank(nombre)) {
-			;
 			predicates.add(cb.like(root.get("nombre"), "%" + nombre + "%"));
 		}
 		if (!StringUtils.isBlank(apellido)) {

@@ -3,7 +3,6 @@ package eu.eurogestion.ese.domain;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -114,10 +112,5 @@ public class Personal implements java.io.Serializable {
 			nombreString += " " + cargo.getNombre();
 		}
 		return nombreString;
-	}
-
-	@Transient
-	public void setNombrePersonal() {
-
 	}
 }
