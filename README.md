@@ -1,4 +1,4 @@
-# eSe (e-SGS empresarial)
+# eSe Fabric (e-SGS empresarial)
 
 Sistema que implementa el SGS de una empresa ferroviaria.
 
