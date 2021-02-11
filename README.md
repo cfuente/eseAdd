@@ -2,9 +2,9 @@
 
 Sistema que implementa el SGS de una empresa ferroviaria.
 
-## Comenzando 
+## Descripción 
 
-Es una utilidad desarrollada en java, se genere el war del proyecto y se instala en un servidor de aplicaciones. Necesita conexión con blockchain, donde se guardan las evidencias de los documentos y se comprueban las reglas de negocio definidas.
+Es una utilidad desarrollada en java, se genera el war correspondiente del proyecto y se instala en un servidor de aplicaciones. Necesita conexión con blockchain, donde se guardan las evidencias de los documentos y se comprueban las reglas de negocio definidas.
 
 Mira **Despliegue** para conocer como desplegar el proyecto.
 
